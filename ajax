@@ -1,0 +1,17 @@
+$.ajax({
+            url: "xxxxxx?act=3",
+                type:'POST',
+                page: 1,
+                dataType: 'json',
+                data:postData,
+            success:function(data){
+                if(data.code!=0) {
+                    $("#table_list_2").jqGrid("setGridParam", {url: "xxxxxx?act=3",page:1,datatype:"json",postData:{
+                        name:name,
+                    }}).trigger('reloadGrid');
+                }else{
+                    layer.alert(data.msg);
+                }
+
+            }
+        });
