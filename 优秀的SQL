@@ -1,0 +1,14 @@
+SELECT  * FROM(
+      select 1 num union all
+      select 2 num union all
+      select 3 num union all
+      select 4 num union all
+      select 5 num union all
+      select 6 num union all
+      select 7 num union all
+      select 8 num union all
+      select 9 num union all
+    select 10 num union all
+select 11 num union all
+select 12 
+)a --查询12个月份
