@@ -1,1 +1,21 @@
-脏读 （dirty read）事务T1更新了一行记录的内容，但是并没有提交所做的修改。事务T2读取更新后的行，然后T1执行回滚操作，取消了刚才所做的修改。现在T2所读取的行就无效了。
+1、脏读 （dirty read）事务T1更新了一行记录的内容，但是并没有提交所做的修改。事务T2读取更新后的行，然后T1执行回滚操作，取消了刚才所做的修改。
+现在T2所读取的行就无效了。也叫不可重复读；
+
+2、MySQL数据库的事务原理：
+对于数据库，本身可以看做是一个存放大量Excel数据表的容器。--container
+对于没有开启transation 事务的数据库来说，它的autocommit值为1，即 select @@autocommit 可以看到其值为1
+可以通过set autocommit关闭数据表自动提交。所谓自动提交就比如我们开启Excel表自动保存，对于用户的一次完整数据，会自动保存执行。
+而开启事务后，一次完整的用户请求sql，也会执行，但不会自动保存，即可以撤销。
+几个事务共同进行，可以通过捕捉错误信息进行一次回滚，如yii：
+$transaction=$connection->beginTransaction(); 
+try { $connection->createCommand($sql1)->execute(); $connection->createCommand($sql2)->execute(); 
+//.... other SQL executions $transaction->commit(); } 
+catch(Exception $e) // 如果有一条查询失败，则会抛出异常 
+{ $transaction->rollBack(); }
+
+3、事务具有原子性、一致性的要求，对事务内的sql，必须同时成功或者单条失败则回滚。
+以php为例的代码则是
+<?php
+if(FALSE=== $sql1 || FALSE === $sql2 || FALSE === $sql3...) {
+    rollback;
+}
