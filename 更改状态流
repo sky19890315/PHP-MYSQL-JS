@@ -1,0 +1,24 @@
+public function changeStatus($a, $b, $c, $d){
+    $sWhere = "informationid='${iInformationid}' and a='${a}'";
+    $aInfo = $this->oDB->getOne("select is_sticky from proxyinformation where ${sWhere}");
+    if (!$aInfo) {
+        return false;
+    }
+
+    if (0 == $aInfo['is_sticky']) {
+        // 开启事务
+        $this->oDB->doTransaction();
+        try {
+            $this->oDB->update('proxyinformation',['is_sticky' => 1, 'admin_id' => $iAdminid, 'lastuser' => $sAdminName], $sWhere);
+            $this->oDB->update('proxyinformation',['is_sticky' => 0, 'admin_id' => $iAdminid, 'lastuser' => $sAdminName], "informationid<>'${iInformationid}' and a='${a}'");
+            $this->oDB->doCommit();
+            return 1;
+        } catch (Exception $oException) {
+            // 回滚，返回失败
+            $this->oDB->doRollback();
+            return false;
+        }
+    } else {
+        return $this->oDB->update('proxyinformation',['is_sticky' => 0, 'admin_id' => $iAdminid, 'lastuser' => $sAdminName], $sWhere);
+    }
+}
