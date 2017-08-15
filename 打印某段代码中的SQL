@@ -1,0 +1,6 @@
+$this->oDB->outsql = true;// 打印开始
+$this->oDB->outsql = false;// 打印结束
+输出
+	    if($this->outsql === true) {
+	        file_put_contents("D:/sql_debug0815.sql", $sSql . "\n\n", FILE_APPEND);
+        }
