@@ -1,0 +1,26 @@
+    static function singleton( $sClassName, $params = '' )
+    {
+        if( $params == '' )
+        {
+            if( isset(self::$_aObjects[ $sClassName ]) )
+            {
+                return self::$_aObjects[ $sClassName ];
+            }
+        }
+        else
+        {
+            if( isset(self::$_aObjects[ $sClassName.'_'.md5(serialize($params) ) ]) )
+            {
+                return self::$_aObjects[ $sClassName.'_'.md5(serialize($params) ) ];
+            }
+        }
+        self::loadClass( $sClassName );
+        if( $params == '' )
+        {
+            return self::register( new $sClassName(), $sClassName );
+        }
+        else
+        {
+            return self::register( new $sClassName($params), $sClassName.'_'.md5(serialize($params) ) );
+        }
+    }
