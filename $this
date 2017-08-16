@@ -1,0 +1,6 @@
+$this 返回对象本身 如
+public function man()
+{
+    can say;
+    return $this;
+}
