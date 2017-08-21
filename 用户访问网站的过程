@@ -1,0 +1,7 @@
+1、用户访问到站点时，选择注册。
+2、注册用户登录后，会触发session机制。
+3、session将session id 返回客户端--保存为cookie
+4、session值将保存在服务器的memcache上
+5、在session有效期内，用户更换浏览器或者其他行为，
+memchache都可以通过分布式算法来根据用户的session id
+查找到对应的session，以便对用户行为进行分析，避免用户不停地登录
