@@ -17,3 +17,9 @@ $.ajax({
         });
 ## jquery 在线手册
 http://www.runoob.com/manual/jquery/
+
+一次ajax请求：
+用户点击|页面触发->发起ajax请求
+->请求失败->返回错误码
+->请求成功->服务器响应->接收响应->做出处理->一次ajax完成
+
