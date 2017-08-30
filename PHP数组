@@ -1,0 +1,15 @@
+1 array_push 入栈 即在数组最后一个位置加入一个值 增加数组长度
+2 array_pop 出栈 即弹出数组中最后一个值 减少数组长度
+3 二维数组合并 通过foreach 遍历合并
+4 in_array 数组间的比较
+
+------2017-08-30
+对于二维数组的空的判定
+php > $arr = null;
+php > $arr2 = 1;
+php > $arrb = [$arr,$arr2];
+php > var_dump(empty($arrb));
+php shell code:1:
+bool(false)
+
+我在脚本中跑了以上这句，对于二维数组，用empty进行判断，只要其中有数组内有值，结果就会是错误。
