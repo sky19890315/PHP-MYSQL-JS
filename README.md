@@ -1,38 +1,7 @@
-# debug
-服务器友好输出
-
-
-/**
- * 浏览器友好的变量输出
- * @param mixed $var 变量
- * @param boolean $echo 是否输出 默认为True 如果为false 则返回输出字符串
- * @param string $label 标签 默认为空
- * @param boolean $strict 是否严谨 默认为true
- * @return void|string
- */
- 
- 
-function dump($var, $echo=true, $label=null, $strict=true) {
-    $label = ($label === null) ? '' : rtrim($label) . ' ';
-    if (!$strict) {
-        if (ini_get('html_errors')) {
-            $output = print_r($var, true);
-            $output = '<pre>' . $label . htmlspecialchars($output, ENT_QUOTES) . '</pre>';
-        } else {
-            $output = $label . print_r($var, true);
-        }
-    } else {
-        ob_start();
-        var_dump($var);
-        $output = ob_get_clean();
-        if (!extension_loaded('xdebug')) {
-            $output = preg_replace('/\]\=\>\n(\s+)/m', '] => ', $output);
-            $output = '<pre>' . $label . htmlspecialchars($output, ENT_QUOTES) . '</pre>';
-        }
-    }
-    if ($echo) {
-        echo($output);
-        return null;
-    }else
-        return $output;
-}
+## 这是一个个人经验总结的仓库，包含但不仅限于以下内容
+### 1 php开发经验总结
+### 2 js开发经验总结
+### 3 mysql开发经验总结
+### 4 相关手册
+### 5 优秀代码规范
+### 6 其他web相关思考总结
