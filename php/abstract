@@ -1,0 +1,36 @@
+<?php
+
+abstract class people
+{
+  abstract public function name($name);
+
+  abstract public function age($age);
+
+}
+
+class student extends people {
+  private $name;
+  private $age;
+
+  public function __construct($name, $age)
+  {
+    $this->name = $name;
+    $this->age = $age;
+    echo "My name is \n".$this->name."\n AND My Age is \n".$this->age."<br/>";
+    return $this;
+  }
+
+  public function name($val=0)
+  {
+    echo "My name is \n".$val."<br />";
+    return $this;
+  }
+
+  public function age($val=0) {
+    echo "My age is \n".$val."<br />";
+    return $this;
+  }
+}
+
+$stu = new student('ken','18');
+$stu->name('ken')->age('18');
