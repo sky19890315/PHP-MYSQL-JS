@@ -1,0 +1,24 @@
+1 定义抽象类的关键字是abstract,定义接口的关键字是interface
+2 继承抽象类的关键字是extends,继承接口的关键字是implement
+3 抽象类中的抽象方法都必须用abstract 关键字修饰 
+如 abstract class people {
+  private $name;
+  public function getName($name) {
+  $this->name = $name;
+    echo "my name is \n".$this->name;
+  }
+  abstract function name($name);
+}
+这是一个标准的抽象类,说到底,这还是一个类,只不过其包含了一个抽象方法 name,所以必须声明其为抽象类.
+抽象类不能被实例化,想要调用getName的方法,只能用子类去继承它,并要实现抽象方法name,才可以变成一个具体的类.
+抽象类因为是类,所以具有类的所有特性.
+4 接口是特殊的抽象类,相当于 普通类--抽象类 -- 接口
+到接口这一层,已经和普通类隔离了,接口不具备普通类的定义属性\定义实体方法的能力,其所有方法都是抽象方法,所以也不需要用abstract
+去修饰.
+5 继承接口必须实现接口的所有抽象方法.
+接口如下:
+interface people{
+  public function name($name);
+  public function age($age);
+}
+子类继承只能使用implement,一个类只能继承一个抽象类,但是可以继承多个接口.
