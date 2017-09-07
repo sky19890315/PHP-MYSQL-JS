@@ -1,0 +1,44 @@
+<?php
+    // 1 构造一个人类的类
+    interface People {
+        // 姓名
+        function setName($name);
+        // 肤色
+        function setColor($color);
+    }
+
+    class Man implements People {
+        private $_name;
+        private $_color;
+        function setName($name){
+            $this->_name = $name;
+            echo "His name is \t".$this->_name."\n";
+            return;
+        }
+        function setColor($color) {
+            $this->_color = $color;
+            echo "His color is \t".$this->_color."\n";
+            return;
+        }
+    }
+
+    class Blackman
+    {
+        private $_man;
+
+        function __construct($man)
+        {
+            $this->_man = $man;
+            return;
+        }
+
+        function getMan($name,$color) {
+            $this->_man->setName($name);
+            $this->_man->setColor($color);
+            return;
+        }
+    }
+
+    $man = new Man();
+    $Blackman = new Blackman($man);
+    $Blackman->getMan('rhovin','white');
