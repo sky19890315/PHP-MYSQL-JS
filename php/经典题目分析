@@ -1,0 +1,18 @@
+define(myvalue, "10");
+$myarray[10] = "Dog";
+$myarray[] = "Human";
+$myarray['myvalue'] = "Cat";
+$myarray["Dog"] = "Cat";
+print "The value is: ";
+print $myarray[myvalue]."\n";
+
+这是一个很具有欺骗性也很经典的题目,可以将上面分为1-7步进行分析
+第一步:定义常量,但是在这部已经定义错了
+常量的定义第一参数是字符串,应该如下定义
+define('myvalue', "10");
+第二步有欺骗性的是在第三步赋值,
+$myarray['myvalue'] = "Cat";并没有调用常量
+调用常量应该如此
+$myarray[myvalue] = "Cat";
+最后有欺诈性的是打印的是以常量做下标的数组的值,如果赋值正确,该常量的值是10
+最终得到的结果还是dog
