@@ -1,0 +1,22 @@
+// 对于异步ajax,所有动作都是直接往下走的。
+// 例如本次ajax，请求发出之后，会立刻按照顺序执行
+// 事件1 事件2 事件3 return false;
+// 因为是异步，所以和正常顺序函数不一样，它是发出ajax就不再等待
+// 回调函数 例如success，则是预留给系统触发的
+// 回调函数不会立刻执行，例如success事件，会触发一个回调函数
+// 我们可以做其他事情，一旦回调函数被触发，我们就知道本次ajax请求成功
+// 当然，失败也可以给一个回调函数
+function foo(callback) {
+    $.ajax({
+        // ...
+        success: function(response) {
+            // For example, filter the response
+            callback(filtered_response);
+        }
+    });
+// do other things
+// do thing one
+// do thing two
+// do tinng three
+return false
+}
