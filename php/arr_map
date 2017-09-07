@@ -1,0 +1,11 @@
+<?php
+function go($val)
+{
+    return ($val + 8);
+}
+
+$arr = [1, 4, 8];
+
+$tmp = array_map("go", $arr);
+
+var_dump($tmp);
