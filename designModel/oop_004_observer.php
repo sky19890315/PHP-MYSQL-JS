@@ -59,7 +59,7 @@ class BinaryObserver extends Observer {
 	 * @param  [type] $subject [description]
 	 * @return [type]          [description]
 	 */
-	public function binaryObserver($subject) {
+	public function __construct($subject) {
 		$this->_subject = $subject;
 		$this->_subject->attach($this);
 		return;
@@ -70,6 +70,6 @@ class BinaryObserver extends Observer {
 	}
 }
 $subject = new Subject();
-$subject->setState(1);
+$subject->setState(2);
 $binaryObserver = new BinaryObserver($subject);
 $binaryObserver->update();
