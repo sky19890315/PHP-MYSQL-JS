@@ -155,9 +155,13 @@ class ServiceLocator {
         if (!empty($this->_cache->getServices($ServiceName))) {
             return $this->_cache->getServices($ServiceName);
         }// 读取缓存
-
+        
         $context = new InitialContext();
         $ServiceTmp = $context->lookUp($ServiceName);// 实例返回
+        if (empty($ServiceTmp)) {
+            echo "找不到相关实例,请核对 \n";
+            return;
+        }
         $this->_cache->addService($ServiceTmp->getId(),$ServiceTmp->getName());
         return $ServiceTmp;
     }
@@ -165,6 +169,8 @@ class ServiceLocator {
 
 $ServiceLocator = new ServiceLocator();
 $tmp = $ServiceLocator->getService('ServiceTwo');
-$tmp->run();
+if (is_object($tmp)) {
+    $tmp->run();
+}
 
 
