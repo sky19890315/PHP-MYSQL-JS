@@ -1,1 +1,12 @@
 YII 源码分析
+(源码可见:designModel 抽象工厂方法)
+$color = FactoryProducer::getFactory('color'); // 用户选择调用颜色工厂
+$color->getColor('blue')->fill(); // 用户选择颜色工厂下的蓝色
+FactoryProducer::getFactory('shape')->getShape('circle')->draw(); // 用户选择形状
+// 工厂并调用形状工厂的获取形状方法，通过该方法选择圆形对象，并调用其下的画的方法 画了一个园
+// 到这里 就和Yii很像了
+// Yii::$app->a('something')->b();
+// 说明Yii框架也大量使用了抽象工厂方法
+// 不同的是，Yii是一个全局变量，相当于一个全局抽象工厂，根据用户不同的应用（$app）来选择不同的
+// 工厂，进而调用某些工厂下的方法
+最近研究设计模式，突然发现Yii的调用方法 原来是利用了抽象工厂的方法。学习设计模式，收益颇为丰盛
