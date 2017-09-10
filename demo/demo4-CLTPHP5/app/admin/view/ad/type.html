@@ -1,0 +1,83 @@
+{include file="common/mainHead"/}
+<div class="admin-main fadeInUp animated">
+    <blockquote class="layui-elem-quote">
+        <form class="layui-form" style="float:left;" action="{:url('type')}" method="post">
+            <div class="layui-form-item" style="margin:0;">
+                <div class="layui-input-inline">
+                    <input type="text" name="key" id="key" value="{$testkey}" placeholder="{:lang('pleaseEnter')}关键字！" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux" style="padding:0;">
+                    <button type="submit" class="layui-btn"><i class="fa fa-search" aria-hidden="true"></i> 查询</button>
+                    <a href="{:url('type')}" class="layui-btn">显示全部</a>
+                </div>
+            </div>
+        </form>
+        <a href="{:url('addType')}" class="layui-btn" style="float:right;"><i class="fa fa-plus" aria-hidden="true"></i>{:lang('add')}{:lang('ad')}位</a>
+        <div style="clear: both;"></div>
+    </blockquote>
+    <fieldset class="layui-elem-field">
+        <legend>{:lang('ad')}位管理</legend>
+        <div class="layui-field-box table-responsive">
+            <form class="layui-form layui-form-pane">
+                <table class="layui-table table-hover">
+                    <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>广告位名称</th>
+                        <th>排序</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <!--内容容器-->
+                    <tbody id="con">
+                    {volist name="$list" id="v"}
+                    <tr>
+                        <td>{$v.type_id}</td>
+                        <td>{$v.name}</td>
+                        <td><input name="{$v.type_id}" value=" {$v.sort}" class="list_order"/></td>
+                        <td>
+                            <a href="{:url('editType',['type_id'=>$v['type_id']])}" class="layui-btn layui-btn-mini">{:lang('edit')}</a>
+                            <a href="javascript:;" onclick="return del('{$v.type_id}')" class="layui-btn layui-btn-mini layui-btn-danger">{:lang('del')}</a>
+                        </td>
+                    </tr>
+                    {/volist}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="7">
+                            <button type="button" class="layui-btn  layui-btn-small" lay-submit="" lay-filter="sort">{:lang('order')}</button>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </form>
+        </div>
+    </fieldset>
+</div>
+{include file="common/mainFoot"/}
+<script>
+    layui.use(['form', 'layer'], function() {
+        var form = layui.form(), layer = layui.layer;
+    });
+    function del(id) {
+        layer.confirm('删除广告位会删除对应广告？', {icon: 3}, function (index) {
+            layer.close(index);
+            window.location.href = "{:url('delType')}?type_id=" + id;
+        });
+    }
+    //排序提交
+    layui.use(['form', 'layer'], function() {
+        var form = layui.form(),layer = layui.layer;
+        form.on('submit(sort)', function(data){
+            $.post("{:url('typeOrder')}",data.field,function(res){
+                if(res.code > 0){
+                    layer.msg(res.msg,{time:1000,icon:1},function(){
+                        location.href = res.url;
+                    });
+                }else{
+                    layer.msg(res.msg,{time:1000,icon:2});
+                }
+            })
+        });
+    });
+</script>

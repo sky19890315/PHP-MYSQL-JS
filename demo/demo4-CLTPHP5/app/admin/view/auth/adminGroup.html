@@ -1,0 +1,55 @@
+{include file="common/mainHead"/}
+<div class="admin-main fadeInUp animated">
+    <blockquote class="layui-elem-quote">
+        <a href="{:url('groupAdd')}" class="layui-btn layui-btn-small">
+            <i class="fa fa-plus"></i> 添加用户组
+        </a>
+    </blockquote>
+    <fieldset class="layui-elem-field">
+        <legend>用户组列表</legend>
+        <div class="layui-field-box table-responsive">
+            <form class="layui-form layui-form-pane">
+                <table class="layui-table table-hover" lay-even>
+                    <thead>
+                    <tr>
+                        <th>{:lang('id')}</th>
+                        <th>用户组名</th>
+                        <th>添加时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {volist name="list" id="v"}
+                    <tr>
+                        <td>{$v.group_id}</td>
+                        <td>{$v.title}</td>
+                        <td>{$v.addtime}</td>
+                        <td>
+                            <a href="{:url('groupAccess',array('id'=>$v['group_id']))}" class="layui-btn layui-btn-mini layui-btn-normal" title="配置规则">配置规则</a>
+                            <a href="{:url('groupEdit',array('id'=>$v['group_id']))}" class="layui-btn layui-btn-mini">{:lang('edit')}</a>
+                            <a href="javascript:;" class="layui-btn layui-btn-mini layui-btn-danger" onclick="return del('{$v.group_id}');">{:lang('del')}</a>
+                        </td>
+                    </tr>
+                    {/volist}
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </fieldset>
+    <div class="admin-table-page">
+        <div id="page" class="page">
+        </div>
+    </div>
+</div>
+{include file="common/mainFoot"/}
+<script>
+    layui.use(['form', 'layer'], function() {
+        var form = layui.form(), layer = layui.layer;
+    });
+    function del(id) {
+        layer.confirm('你确定要删除吗？', {icon: 3}, function (index) {
+            layer.close(index);
+            window.location.href = "{:url('groupDel')}?id=" + id + "";
+        });
+    }
+</script>

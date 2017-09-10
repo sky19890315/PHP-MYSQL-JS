@@ -1,0 +1,62 @@
+{include file="common/mainHead"/}
+<div class="admin-main fadeInUp animated">
+    <fieldset class="layui-elem-field">
+        <legend>登录插件</legend>
+        <div class="layui-field-box table-responsive">
+            <table class="layui-table table-hover">
+                <thead>
+                <tr>
+                    <th>插件名称</th>
+                    <th>图片</th>
+                    <th>插件描述</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <!--内容容器-->
+                <tbody id="con">
+                {volist name="list" id="v"}
+                <tr>
+                    <td>{$v.name}</td>
+                    <td>
+                        <i class="fa fa-picture-o" onmouseover="layer.tips('<img src=/plugins/{:ACTION_NAME}/{$v.code}/{$v.icon}>',this,{tips: [1, '#fff']});" onmouseout="layer.closeAll();"></i>
+                    </td>
+                    <td>{$v.desc}</td>
+                    <td>
+                        {if condition="$v.status eq 0"}
+                        <a onclick="installPlugin('{$v.type}','{$v.code}',1)" href="#" class="layui-btn layui-btn-mini">一键安装</a>
+                        {else /}
+                        <a class="layui-btn layui-btn-mini"  href="{:url('loginSet',['type'=>$v['type'],'code'=>$v['code']])}" title="配置">
+                            配置
+                        </a>
+                        <a class="layui-btn layui-btn-mini layui-btn-danger" href="#" onclick="installPlugin('{$v.type}','{$v.code}',0);" title="卸载">
+                            卸载
+                        </a>
+                        {/if}
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+</div>
+{include file="common/mainFoot"/}
+<script>
+    layui.use(['layer'], function() {
+        var layer = layui.layer;
+    });
+    //插件安装(卸载)
+    function installPlugin(type,code,type2){
+        var url = '{:url("install")}?&type='+type+'&code='+code+'&install='+type2;
+        $.get(url,function(data){
+            if(data.code == 1){
+                layer.alert(data.msg, {icon: 6},function(){
+                    window.location.href="{:url(ACTION_NAME)}";
+                });
+            }else{
+                layer.alert(data.msg, {icon: 5});
+            }
+        })
+    }
+
+</script>

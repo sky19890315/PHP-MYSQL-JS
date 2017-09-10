@@ -1,0 +1,61 @@
+{include file="common/mainHead"/}
+<div class="admin-main fadeInUp animated">
+    <blockquote class="layui-elem-quote">
+        <form class="layui-form" style="float:left;" action="{:url('index')}" method="post">
+            <div class="layui-form-item" style="margin:0;">
+                <div class="layui-input-inline">
+                    <input type="text" name="key" id="key" value="{$testkey}" placeholder="{:lang('pleaseEnter')}关键字！" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux" style="padding:0;">
+                    <button type="submit" class="layui-btn"><i class="fa fa-search" aria-hidden="true"></i> 查询</button>
+                    <a href="{:url('index')}" class="layui-btn">显示全部</a>
+                </div>
+            </div>
+        </form>
+        <a href="{:url('add')}" class="layui-btn" style="float:right;"><i class="fa fa-plus" aria-hidden="true"></i>{:lang('add')}{:lang('debris')}</a>
+        <div style="clear: both;"></div>
+    </blockquote>
+    <fieldset class="layui-elem-field">
+        <legend>{:lang('debris')}管理</legend>
+        <div class="layui-field-box table-responsive">
+            <form class="layui-form layui-form-pane">
+                <table class="layui-table table-hover">
+                    <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>{:lang('title')}</th>
+                        <th>{:lang('add')}{:lang('time')}</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <!--内容容器-->
+                    <tbody id="con">
+                    {volist name="$list" id="v"}
+                    <tr>
+                        <td>{$v.id}</td>
+                        <td>{$v.title}</td>
+                        <td>{$v.addtime|date='Y-m-d h:i',###}</td>
+                        <td>
+                            <a href="{:url('edit',['id'=>$v['id']])}" class="layui-btn layui-btn-mini">{:lang('edit')}</a>
+                            <a href="javascript:;" onclick="return del('{$v.id}')" class="layui-btn layui-btn-mini layui-btn-danger">{:lang('del')}</a>
+                        </td>
+                    </tr>
+                    {/volist}
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </fieldset>
+</div>
+{include file="common/mainFoot"/}
+<script>
+    layui.use('layer',function() {
+        var layer = layui.layer;
+    });
+    function del(id) {
+        layer.confirm('你确定要删除吗？', {icon: 3}, function (index) {
+            layer.close(index);
+            window.location.href = "{:url('del')}?id=" + id;
+        });
+    }
+</script>
