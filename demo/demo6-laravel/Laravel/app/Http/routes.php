@@ -25,10 +25,8 @@ Route::get('/help', 'StaticPagesController@help')->name('help');
 Route::get('/about', 'StaticPagesController@about')->name('about');
 Route::get('/signup', 'UsersController@create')->name('signup');
 Route::resource('users', 'UsersController');
-/*
-public function name($name) {
-$this->action['as'] = isset($this->action['as']) ? $this->action['as'] . $name : $name;
 
-return $this;
-}
- */
+// restful API 调用机制
+Route::get('login', 'SessionsController@create')->name('login');
+Route::post('login', 'SessionsController@store')->name('login');
+Route::delete('logout', 'SessionsController@destroy')->name('logout');
