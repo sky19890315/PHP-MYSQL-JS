@@ -18,8 +18,16 @@
 //});
 // 调用路由类的get方法
 // 如果请求斜杠 则调用xx控制器的home方法
-Route::get('/', 'StaticPagesController@home');
+Route::get('/', 'StaticPagesController@home')->name('home');
 // 如果请求 /help 则调用 xx控制器的help方法
-Route::get('/help', 'StaticPagesController@help');
+Route::get('/help', 'StaticPagesController@help')->name('help');
 // 如果请求 /help 则调用 xx控制器的help方法
-Route::get('/about', 'StaticPagesController@about');
+Route::get('/about', 'StaticPagesController@about')->name('about');
+Route::get('/signup', 'UsersController@create')->name('signup');
+/*
+public function name($name) {
+$this->action['as'] = isset($this->action['as']) ? $this->action['as'] . $name : $name;
+
+return $this;
+}
+ */
