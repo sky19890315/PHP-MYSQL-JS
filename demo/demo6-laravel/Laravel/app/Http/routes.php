@@ -24,6 +24,7 @@ Route::get('/help', 'StaticPagesController@help')->name('help');
 // 如果请求 /help 则调用 xx控制器的help方法
 Route::get('/about', 'StaticPagesController@about')->name('about');
 Route::get('/signup', 'UsersController@create')->name('signup');
+Route::resource('users', 'UsersController');
 /*
 public function name($name) {
 $this->action['as'] = isset($this->action['as']) ? $this->action['as'] . $name : $name;
