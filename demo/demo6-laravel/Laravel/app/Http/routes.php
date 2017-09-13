@@ -9,8 +9,17 @@
 | It's a breeze. Simply tell Laravel the URIs it should respond to
 | and give it the controller to call when that URI is requested.
 |
-*/
+ */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// 路由规则 如果请求的是斜杠  则调用回调函数
+// 则去调用视图中的欢迎页面
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+// 调用路由类的get方法
+// 如果请求斜杠 则调用xx控制器的home方法
+Route::get('/', 'StaticPagesController@home');
+// 如果请求 /help 则调用 xx控制器的help方法
+Route::get('/help', 'StaticPagesController@help');
+// 如果请求 /help 则调用 xx控制器的help方法
+Route::get('/about', 'StaticPagesController@about');
