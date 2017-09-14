@@ -47,11 +47,23 @@ class SessionsController extends Controller
         ];
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
-            session()->flash('success', '欢迎回来！');
-            // intended 第一个参数是路径
-            // 第二个参数是状态码 第三个参数是 header
-            // 第四个参数是安全
-            return redirect()->intended(route('users.show', [Auth::user()]));
+
+            /*
+             *  判断是否已经激活 如果激活 则欢迎回来 否则
+             *  回到首页
+             */
+            if (Auth::user()->activated) {
+                session()->flash('success', '欢迎回来！');
+                // intended 第一个参数是路径
+                // 第二个参数是状态码 第三个参数是 header
+                // 第四个参数是安全
+                return redirect()->intended(route('users.show', [Auth::user()]));
+            } else {
+                Auth::logout();
+                session()->flash('warning', '很抱歉,您的邮箱还没有激活');
+                return redirect('/');
+            }
+            
         } else {
             session()->flash('danger', '很抱歉，您的邮箱和密码不匹配');
             return redirect()->back();
