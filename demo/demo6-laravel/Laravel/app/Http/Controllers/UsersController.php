@@ -85,7 +85,12 @@ class UsersController extends Controller
     {
         //根据接收到的 id 去数据库查找用户信息
         $user = User::findOrFail($id);
-        return view('users.show', compact('user'));
+        /**
+         * 调用User Model的一个方法
+         * @var [type]
+         */
+        $statuses = $user->statuses()->orderBy('created_at','desc')->paginate(10);
+        return view('users.show', compact('user', 'statuses'));
     }
 
     /**

@@ -58,4 +58,22 @@ CanResetPasswordContract
              $user->activation_token = str_random(30);
         });
     }
+    /**
+     * 这个方法绑定了微博模型类
+     * @return [type] [description]
+     */
+    function statuses()
+    {
+        return $this->hasMany(Status::class);
+    }
+
+    /**
+     * 获取数据填充微博 总数据库中获取数据
+     * 供给控制器调用
+     * @return [type] [description]
+     */
+    function feed()
+    {
+        return $this->statuses()->orderBy('created_at', 'desc');
+    }
 }

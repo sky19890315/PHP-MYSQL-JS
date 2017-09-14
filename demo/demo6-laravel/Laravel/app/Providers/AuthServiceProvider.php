@@ -5,6 +5,9 @@ namespace App\Providers;
 // 引入app 类
 use App\Policies\UserPolicy; //trait  权限检查
 use App\User; //trait 获取用户对象信息
+// 引入status
+use App\Status;
+use App\Policies\StatusPolicy;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -18,7 +21,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
-        User::class => UserPolicy::class,
+         User::class => UserPolicy::class,
+         Status::class  => StatusPolicy::class,
     ];
 
     /**

@@ -2,32 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-// 引用trait
-// 引用类
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use Auth;// 引入model
 use App\Status;
-use Auth;
 
-class StaticPagesController extends Controller
+class StatusesController extends Controller
 {
-    public function home()
+    function __construct()
     {
-        $feed_items = [];
-        if (Auth::check()) {// 认证的用户
-            $feed_items = Auth::user()->feed()->paginate(10);
-        }
-        return view('static_pages/home', compact('feed_items'));
-    }
-
-    public function help()
-    {
-        return view('static_pages/help');
-    }
-
-    public function about()
-    {
-        return view('static_pages/about');
+        $this->middleware('auth', [
+            'only'      =>  ['store', 'destroy']
+            ]);
     }
     /**
      * Display a listing of the resource.
@@ -57,7 +45,21 @@ class StaticPagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 因为微博总是隶属于某个用户 
+        // 就直接调用用户模型中的微博方法 来创建
+        // 过滤
+        $this->validate($request, [
+                'content'   =>  'required|max:140'
+            ]);
+        /**
+         * 链式调用 因为前面绑定了微博
+         * 其实应该是直接user()->create
+         * 也就是调用了User model的 create 方法
+         */
+        Auth::user()->statuses()->create([
+            'content'   => $request->content
+            ]);
+        return redirect()->back();
     }
 
     /**
@@ -102,6 +104,14 @@ class StaticPagesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // 根据传入的id 进行查找
+        // 首先必须要查找到数据 并放入一个对象中
+        // 其次进行认证判断 通过验证后可删除
+        // 验证也就是利用策略模式
+        $status = Status::findOrFail($id);
+        $this->authorize('destroy', $status);
+        $status->delete($id);
+         session()->flash('success', '微博已被成功删除！');
+        return redirect()->back();
     }
 }
