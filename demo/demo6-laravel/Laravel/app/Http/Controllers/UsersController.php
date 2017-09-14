@@ -18,7 +18,7 @@ class UsersController extends Controller
     {
         // 已认证用户 只能访问编辑 更新
         $this->middleware('auth', [
-            'only' => ['edit', 'update', 'destroy'],
+            'only' => ['edit', 'update', 'destroy', 'followings', 'followers'],
         ]);
         // 未登录用户 只能访问登录 注册
         $this->middleware('guest', [
@@ -188,5 +188,31 @@ class UsersController extends Controller
         Auth::login($user);
         session()->flash('success', '恭喜你，激活成功！');
         return redirect()->route('users.show', [$user]);
+    }
+
+    /**
+     * 根据 id 获取用户数据
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function followings($id)
+    {
+        $user = User::findOrFail($id);
+        $users = $user->followings()->paginate(30);
+        $title = '关注的人';
+        return view('users.show_follow', compact('users', 'title'));
+    }
+
+    /**
+     * 根据 ID 获取用户关注列表
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function followers($id)
+    {
+        $user = User::findOrFail($id);
+        $users = $user->followers()->paginate(30);
+        $title = '粉丝';
+        return view('users.show_follow', compact('users', 'title'));
     }
 }
