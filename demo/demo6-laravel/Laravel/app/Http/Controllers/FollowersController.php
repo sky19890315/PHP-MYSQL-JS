@@ -55,17 +55,17 @@ class FollowersController extends Controller
         // 4 不是已经关注的用户则可以点击关注
         // 5 关注后跳转回自己用户页面
         // 
-         $user = User::findOrFail($id);
+         $user = User::findOrFail($request->id);
 
         if (Auth::user()->id === $user->id) {
             return redirect('/');
         }
 
-        if (!Auth::user()->isFollowing($id)) {
-            Auth::user()->follow($id);
+        if (!Auth::user()->isFollowing($request->id)) {
+            Auth::user()->follow($request->id);
         }
 
-        return redirect()->route('users.show', $id);
+        return redirect()->route('users.show', $request->id);
     }
 
     /**
