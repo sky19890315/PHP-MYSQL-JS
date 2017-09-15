@@ -2,9 +2,10 @@
 
 /*
 |--------------------------------------------------------------------------
-| Create The Application
+| Create The Application 创建一个应用
 |--------------------------------------------------------------------------
-|
+|  我们第一件要做的事情就是为 laravel 的组件创建一个新的服务应用实例
+| 例如 gulp ,并且为这个控制反转容器绑定各种零件   
 | The first thing we will do is create a new Laravel application instance
 | which serves as the "glue" for all the components of Laravel, and is
 | the IoC container for the system binding all of the various parts.
@@ -17,7 +18,7 @@ $app = new Illuminate\Foundation\Application(
 
 /*
 |--------------------------------------------------------------------------
-| Bind Important Interfaces
+| Bind Important Interfaces 绑定接口
 |--------------------------------------------------------------------------
 |
 | Next, we need to bind some important interfaces into the container so

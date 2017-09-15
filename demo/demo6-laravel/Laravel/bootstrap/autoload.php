@@ -27,7 +27,7 @@ require __DIR__.'/../vendor/autoload.php';
 |
 */
 
-$compiledPath = __DIR__.'/cache/compiled.php';
+$compiledPath = __DIR__.'/cache/compiled.php';// 引入并缓存文件 没有则进行编译
 
 if (file_exists($compiledPath)) {
     require $compiledPath;
