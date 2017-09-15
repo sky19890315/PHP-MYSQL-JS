@@ -89,6 +89,9 @@ CanResetPasswordContract
      */
     public function followers()
     {
+        /**
+         * User::Class 将传入字符串 App\User
+         */
         return $this->belongsToMany(User::Class, 'followers', 'user_id', 'follower_id');
     }
 
@@ -111,7 +114,7 @@ CanResetPasswordContract
         if (!is_array($user_ids)) {
              $user_ids = compact('user_ids');
         }
-        $this->followings()->sync($user_ids, false);// 不同步
+        $this->followings()->sync($user_ids, false);// 不同步 第二个参数是判断是否分离
     }
 
     /**
@@ -123,17 +126,19 @@ CanResetPasswordContract
     {
         if (!is_array($user_ids)) {
             $user_ids = compact('user_ids');
+            // 转换为数组 user_ids' => string '4' (length=1)
+            // [user_ids => 4]
         }
-        $this->followings()->detach($user_ids);
+        $this->followings()->detach($user_ids);// 接收一个数组作为参数 分离
     }
 
     /**
-     * 判断是否是关注的用户
+     * 判断关注的人是否是属于自己关注的人 是则返回 true
      * @param  [type]  $user_id [description]
      * @return boolean          [description]
      */
     public function isFollowing($user_id)
     {
-        return $this->followings->contains($user_id);
+        return $this->followings->contains($user_id);// 布尔值
     }
 }
