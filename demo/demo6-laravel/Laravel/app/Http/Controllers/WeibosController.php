@@ -2,35 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-// 引用trait
-// 引用类
-use App\Status;
+use App\Weibo;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\User;
+// 引入认证
 use Auth;
 
-class StaticPagesController extends Controller
+class WeibosController extends Controller
 {
-    public function home()
+    function __construct()
     {
-        // $server = new \swoole_server('127.0.0.1', 9501);
-        // var_dump($server);
-        $feed_items = [];
-        if (Auth::check()) {// 认证的用户
-            $feed_items = Auth::user()->feed()->paginate(10);
-        }
-        return view('static_pages/home', compact('feed_items'));
+         $this->middleware('auth', [
+            'index'
+        ]);
+         // 抓号
+        // $match = [];
+        //  $getData = file_get_contents('http://www.weibo.com/login.php?category=1760');
+        //  $pattent = '/<ul .*>(.*)<\/ul>/';
+         
+        //  $result = preg_match_all($pattent, $getData, $match);
+        //  var_dump($match); 
     }
 
-    public function help()
-    {
-        return view('static_pages/help');
-    }
-
-    public function about()
-    {
-        return view('static_pages/about');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -38,7 +33,8 @@ class StaticPagesController extends Controller
      */
     public function index()
     {
-        //
+        $weiboss = Weibo::paginate(10);
+        return view('weibos.index', compact('weiboss'));//视图
     }
 
     /**

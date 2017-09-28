@@ -18,7 +18,7 @@ class UsersController extends Controller
     {
         // 已认证用户 只能访问编辑 更新
         $this->middleware('auth', [
-            'only' => ['edit', 'update', 'destroy', 'followings', 'followers'],
+            'only' => ['edit', 'update', 'destroy', 'followings', 'followers','weibos'],
         ]);
         // 未登录用户 只能访问登录 注册
         $this->middleware('guest', [
