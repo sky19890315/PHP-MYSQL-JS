@@ -1,3 +1,8 @@
+package Factory;
+
+import Factory.Circle;
+import Factory.Rectangle;
+
 /**
  * Created by sunkeyi on 2017/9/30.
  */
