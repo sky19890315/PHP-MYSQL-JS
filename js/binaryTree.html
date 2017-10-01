@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>二叉树</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+     <script> 
+         function BinarayTree() {
+            var Node = function(key) {
+                this.key = key;
+                this.left = null;
+                this.right = null;
+            };
+
+            var root = null;
+            /**
+             * 匿名函数 判断参数
+             * @param {[type]} node    [description]
+             * @param {[type]} newNode [description]
+             */
+            var InsertNode = function(node, newNode) {
+                if (newNode.key < node.key) {
+                    if (node.left === null) {
+                        node.left = newNode;
+                    } else {
+                       InsertNode(node.left, newNode); 
+                    }
+                }else {
+                    if (node.right === null) {
+                        node.right = newNode;
+                    } else {
+                        InsertNode(node.right, newNode);
+                    }
+                }
+            }
+            /**
+             * 匿名函数 节点插入
+             * 如果跟节点 则将新址赋予给节点 否则插入
+             * @param  {[type]} key [description]
+             * @return {[type]}     [description]
+             */
+            this.insert = function(key) {
+                var newNode = new Node(key);
+                if (root === null) {
+                    root = newNode;
+                } else {
+                    InsertNode(root, newNode);
+                }
+            };
+        }
+
+        var nodes = [2,9,10,8,6,20,15,7];
+        var binarayTree = new BinarayTree();
+        nodes.forEach(function(key) {
+            binarayTree.insert(key);
+        });
+     </script>
+</body>
+</html>
