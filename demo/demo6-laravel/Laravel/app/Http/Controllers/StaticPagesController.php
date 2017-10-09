@@ -13,11 +13,10 @@ class StaticPagesController extends Controller
 {
     public function home()
     {
-        // $server = new \swoole_server('127.0.0.1', 9501);
-        // var_dump($server);
         $feed_items = [];
         if (Auth::check()) {// 认证的用户
             $feed_items = Auth::user()->feed()->paginate(10);
+            dd($feed_items);
         }
         return view('static_pages/home', compact('feed_items'));
     }
