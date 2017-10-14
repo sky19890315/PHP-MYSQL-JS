@@ -1,0 +1,3 @@
+/Users/sunkeyi/www/learn/demo/clang/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/sunkeyi/www/learn/demo/clang/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/sunkeyi/www/learn/demo/clang/cmake-build-debug/CMakeFiles/clang.dir
