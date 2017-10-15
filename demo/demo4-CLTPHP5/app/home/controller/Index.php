@@ -10,6 +10,8 @@ class Index extends Common{
     }
     public function index(){
         //首页推荐
+//	    echo "欢迎来到小猪二手";
+//	    die;
         $list=db('article')->alias('a')
             ->join(config('database.prefix').'category c','a.catid = c.id','left')
             ->where(array('a.posid'=>1))

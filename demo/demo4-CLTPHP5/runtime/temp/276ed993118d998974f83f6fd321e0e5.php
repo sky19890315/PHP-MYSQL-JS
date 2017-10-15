@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:75:"/Users/sunkeyi/www/learn/demo/demo4-CLTPHP5/app/home/view/article_list.html";i:1501031634;s:74:"/Users/sunkeyi/www/learn/demo/demo4-CLTPHP5/app/home/view/common_head.html";i:1502415864;s:76:"/Users/sunkeyi/www/learn/demo/demo4-CLTPHP5/app/home/view/common_footer.html";i:1499916366;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:75:"/Users/sunkeyi/www/learn/demo/demo4-CLTPHP5/app/home/view/article_list.html";i:1501031634;s:74:"/Users/sunkeyi/www/learn/demo/demo4-CLTPHP5/app/home/view/common_head.html";i:1507984270;s:76:"/Users/sunkeyi/www/learn/demo/demo4-CLTPHP5/app/home/view/common_footer.html";i:1507984169;}*/ ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="zh-cn"> <![endif]-->
@@ -108,7 +108,8 @@
     <div id="main-wrapper">
         <!-- logo start here -->
         <div id="logo">
-            <a href="<?php echo url('home/index/index'); ?>" title="CLTPHP内容管理系统"><img src="__PUBLIC__<?php echo $sys['logo']; ?>" alt="mainlogo" /></a>
+            <!--<a href="<?php echo url('home/index/index'); ?>" title="CLTPHP内容管理系统"><img src="__PUBLIC__<?php echo $sys['logo']; ?>" alt="mainlogo" /></a>-->
+            <a href="<?php echo url('home/index/index'); ?>" title="小猪二手交易网"><img src="" alt="小猪二手交易网" /></a>
         </div>
         <!-- logo end here -->
         <!-- mainmenu start here -->
@@ -190,37 +191,38 @@
 <!-- footer start here -->
 <footer>
     <div class="row">
-        <div class="three columns mobile-two">
-            <img src="__HOME__/images/logo2.png" alt="CLTPHP" class="img-left" />
-            <p class="copyright-text">
-                &copy;<?php echo $sys['copyright']; ?> <a href="http://www.cltphp.com/" style="color: #747373" rel="external" title="<?php echo $sys['title']; ?>"><?php echo $sys['title']; ?></a><br>
-                <a href="http://www.miitbeian.gov.cn/" style="color: #747373" target="_blank" rel="nofollow"><?php echo $sys['bah']; ?></a><br>
-            </p>
-        </div>
-        <div class="three columns mobile-two">
-            <h5>联系我们</h5>
-            <ul>
-                <li class="address-icon"><a href="http://www.cltphp.com" title="<?php echo $sys['title']; ?>"><?php echo $sys['title']; ?></a></li>
-                <li class="qq-icon">QQ交流群 : <a target="_blank" rel="nofollow" title="点击加入" href="//shang.qq.com/wpa/qunwpa?idkey=003995f61e8bdf5e79e0241b3136b9803ea498833535bbb3aa14004966858349">229455880</a></li>
-                <li class="qq-icon">站长QQ号 : <a target="_blank" rel="nofollow" title="点击加好友" href="tencent://message/?uin=1109305987&Site=&Menu=yes">1109305987</a></li>
-                <li class="email-icon">Email : 1109305987@qq.com</li>
-            </ul>
-        </div>
-        <div class="three columns mobile-two">
-            <h5>友情链接</h5>
-            <ul>
-                <?php if(is_array($linkList) || $linkList instanceof \think\Collection || $linkList instanceof \think\Paginator): $i = 0; $__LIST__ = $linkList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                <li><a href="<?php echo $vo['url']; ?>" rel="external" title="<?php echo $vo['name']; ?>"><?php echo $vo['name']; ?></a></li>
-                <?php endforeach; endif; else: echo "" ;endif; ?>
-                <li><a href="https://www.kancloud.cn/chichu/cltphp" target="_blank" rel="nofollow" title="CLTPHP操作开发手册">CLTPHP操作开发手册</a></li>
-            </ul>
-        </div>
-        <div class="three columns mobile-two">
-            <h5>扫码捐助</h5>
-            <div class="wxsq">
-                <img src="__HOME__/images/wxsq.png" alt="CLTPHP微信二维码" title="CLTPHP微信二维码">
-            </div>
-        </div>
+        小猪二手交易网
+        <!--<div class="three columns mobile-two">-->
+            <!--<img src="__HOME__/images/logo2.png" alt="CLTPHP" class="img-left" />-->
+            <!--<p class="copyright-text">-->
+                <!--&copy;<?php echo $sys['copyright']; ?> <a href="http://www.cltphp.com/" style="color: #747373" rel="external" title="<?php echo $sys['title']; ?>"><?php echo $sys['title']; ?></a><br>-->
+                <!--<a href="http://www.miitbeian.gov.cn/" style="color: #747373" target="_blank" rel="nofollow"><?php echo $sys['bah']; ?></a><br>-->
+            <!--</p>-->
+        <!--</div>-->
+        <!--<div class="three columns mobile-two">-->
+            <!--<h5>联系我们</h5>-->
+            <!--<ul>-->
+                <!--<li class="address-icon"><a href="http://www.cltphp.com" title="<?php echo $sys['title']; ?>"><?php echo $sys['title']; ?></a></li>-->
+                <!--<li class="qq-icon">QQ交流群 : <a target="_blank" rel="nofollow" title="点击加入" href="//shang.qq.com/wpa/qunwpa?idkey=003995f61e8bdf5e79e0241b3136b9803ea498833535bbb3aa14004966858349">229455880</a></li>-->
+                <!--<li class="qq-icon">站长QQ号 : <a target="_blank" rel="nofollow" title="点击加好友" href="tencent://message/?uin=1109305987&Site=&Menu=yes">1109305987</a></li>-->
+                <!--<li class="email-icon">Email : 1109305987@qq.com</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <!--<div class="three columns mobile-two">-->
+            <!--<h5>友情链接</h5>-->
+            <!--<ul>-->
+                <!--<?php if(is_array($linkList) || $linkList instanceof \think\Collection || $linkList instanceof \think\Paginator): $i = 0; $__LIST__ = $linkList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>-->
+                <!--<li><a href="<?php echo $vo['url']; ?>" rel="external" title="<?php echo $vo['name']; ?>"><?php echo $vo['name']; ?></a></li>-->
+                <!--<?php endforeach; endif; else: echo "" ;endif; ?>-->
+                <!--<li><a href="https://www.kancloud.cn/chichu/cltphp" target="_blank" rel="nofollow" title="CLTPHP操作开发手册">CLTPHP操作开发手册</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <!--<div class="three columns mobile-two">-->
+            <!--<h5>扫码捐助</h5>-->
+            <!--<div class="wxsq">-->
+                <!--<img src="__HOME__/images/wxsq.png" alt="CLTPHP微信二维码" title="CLTPHP微信二维码">-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </footer>
 <!-- footer end here -->
