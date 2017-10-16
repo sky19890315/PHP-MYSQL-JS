@@ -1,0 +1,97 @@
+PHP                                                                        NEWS
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+?? ??? ????, PHP 7.3.0alpha1
+
+- Core:
+  . Redesigned the old ext_skel program written in PHP, run: 
+    'php ext_skel.php' for all options. This means there is no dependencies 
+    thrus making it work on Windows out of the box. (Kalle)
+  . Removed support for BeOS. (Kalle)
+  . Fixed bug #75031 (support append mode in temp/memory streams). (adsr)
+  . Fixed bug #74860 (Uncaught exceptions not being formatted properly when
+    error_log set to "syslog"). (Philip Prindeville)
+  . Fixed bug #75220 (Segfault when calling is_callable on parent). 
+    (andrewnester)
+
+- BCMath:
+  . Fixed bug #66364 (BCMath bcmul ignores scale parameter). (cmb)
+	. Implemented request #67855 (No way to get current scale in use). (Chris
+	  Wright, cmb)
+  . Fixed bug #75164 (split_bc_num() is pointless). (cmb)
+  . Fixed bug #75169 (BCMath errors/warnings bypass PHP's error handling). (cmb)
+
+- Date:
+  . Implemented FR #74668: Add DateTime::createFromImmutable() method.
+    (majkl578, Rican7)
+  . Fixed bug #75222 (DateInterval microseconds property always 0). (jhdxr)
+
+- cURL:
+  . Fixed bug #74125 (Fixed finding CURL on systems with multiarch support).
+    (cebe)
+
+- GD:
+  . Added support for WebP in imagecreatefromstring() (Andreas Treichel, cmb).
+
+- GMP:
+  . Export internal structures and accessor helpers for GMP object. (Sara)
+
+- LDAP:
+  . Added ldap_exop_refresh helper for EXOP REFRESH operation with dds overlay. 
+    (Come)
+  . Added full support for sending and parsing ldap controls (Come)
+
+- litespeed:
+  . Fixed bug #75248 (Binary directory doesn't get created when building 
+    only litespeed SAPI). (petk)
+  . Fixed bug #75251 (Missing program prefix and suffix). (petk)
+
+- Mbstring:
+  . Fixed bug #65544 (mb title case conversion-first word in quotation isn't
+    capitalized). (Nikita)
+  . Fixed bug #71298 (MB_CASE_TITLE misbehaves with curled apostrophe/quote.
+    (Nikita)
+  . Fixed bug #73528 (Crash in zif_mb_send_mail). (Nikita)
+  . Fixed bug #74929 (mbstring functions version 7.1.1 are slow compared to 5.3
+    on Windows). (Nikita)
+
+- ODBC:
+  . Removed support for ODBCRouter. (Kalle)
+  . Removed support for Birdstep. (Kalle)
+
+- PDO_OCI:
+  . Fixed bug #74631 (PDO_PCO with PHP-FPM: OCI environment initialized
+    before PHP-FPM sets it up). (Ingmar Runge)
+
+- PDO SQLite
+  . Add support for additional open flags
+
+- phar:
+  . Fixed bug #74991 (include_path has a 4096 char limit in some cases).
+    (bwbroersma)
+
+- pgsql:
+  . Added new error constants for pg_result_error(): (Kalle)
+    - Requires Postgres 9.3
+      - PGSQL_DIAG_SCHEMA_NAME
+	  - PGSQL_DIAG_TABLE_NAME
+	  - PGSQL_DIAG_COLUMN_NAME
+	  - PGSQL_DIAG_DATATYPE_NAME
+	  - PGSQL_DIAG_CONSTRAINT_NAME
+	- Requires Postgres 9.6
+	  - PGSQL_DIAG_SEVERITY_NONLOCALIZED
+
+- Session:
+  . Fixed bug #74941 (session fails to start after having headers sent). 
+    (morozov)
+
+- SPL:
+  . Fixed bug #74977 (Appending AppendIterator leads to segfault). 
+    (Andrew Nester)
+  . Fixed bug #75173 (incorrect behavior of AppendIterator::append in foreach loop).
+    (jhdxr)
+
+- Standard:
+  . Fixed unzserialize(), to disable creation of unsupported data structures
+    through manually crafted strings. (Dmitry)
+
+<<< NOTE: Insert NEWS from last stable release here prior to actual release! >>>
