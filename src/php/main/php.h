@@ -19,18 +19,23 @@
 
 /* $Id$ */
 
-#ifndef PHP_H
-#define PHP_H
+#ifndef PHP_H /*如果没有被宏定义,则进行定义 */
+#define PHP_H // 定义
 
-#ifdef HAVE_DMALLOC
-#include <dmalloc.h>
-#endif
-
+#ifdef HAVE_DMALLOC // 已定义
+/*
+dmalloc是一种用于检查C/C++内存泄露(leak)的工具，即检查是否存在直到程序运行结束还没有释放的内存，并且能够精确指出在哪个源文件的第几行。
+*/
+#include <dmalloc.h> // 引入标准库
+#endif // 结束判断
+// 定义 api 版本
 #define PHP_API_VERSION 20170718
 #define PHP_HAVE_STREAMS
 #define YYDEBUG 0
-#define PHP_DEFAULT_CHARSET "UTF-8"
-
+#define PHP_DEFAULT_CHARSET "UTF-8"// 字符集
+/*
+引入 php 主文件
+*/
 #include "php_version.h"
 #include "zend.h"
 #include "zend_sort.h"
@@ -38,11 +43,11 @@
 
 #include "zend_API.h"
 
-#undef sprintf
-#define sprintf php_sprintf
+#undef sprintf //取消在先前程序中对预处理器的定义。
+#define sprintf php_sprintf // 定义为 php 标准输出
 
 /* Operating system family defintion */
-#ifdef PHP_WIN32
+#ifdef PHP_WIN32// 判断操作系统
 # define PHP_OS_FAMILY			"Windows"
 #elif defined(BSD) || defined(__DragonFly__) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
 # define PHP_OS_FAMILY			"BSD"
@@ -57,6 +62,8 @@
 #endif
 
 /* PHP's DEBUG value must match Zend's ZEND_DEBUG value */
+/* phpdebug 必须匹配 zend 虚拟机的 debug 设定
+所以先取消掉之前的定义 专门为 php 定义 zenddebug*/
 #undef PHP_DEBUG
 #define PHP_DEBUG ZEND_DEBUG
 
@@ -86,16 +93,38 @@
 # define HAVE_DECLARED_TIMEZONE
 # define WIN32_LEAN_AND_MEAN
 # define NOOPENFILE
-
+// 引入相关的库 包括 io 标准库等
 # include <io.h>
+/*
+malloc函数是一种分配长度为num_bytes字节的内存块的函数，可以向系统申请分配指定size个字节的内存空间。malloc的全称是memory allocation，中文叫动态内存分配，当无法知道内存具体位置的时候，想要绑定真正的内存空间，就需要用到动态的分配内存。
+返回类型是 void* 类型。void* 表示未确定类型的指针。C,C++规定，void* 类型可以通过类型转换强制转换为任何其它类型的指针。
+*/
 # include <malloc.h>
+/*
+direct.h是由Microsoft Windows提供的C / C ++ 头文件，其中包含用于操作文件系统目录的功能。一些POSIX功能类似的东西在unistd.h。
+*/
 # include <direct.h>
+// 标准公共类库
 # include <stdlib.h>
 # include <stdio.h>
+/*
+stdarg.h是C语言中C标准库的头文件，stdarg是由standard(标准) arguments(参数)简化而来，主要目的为让函数能够接收不定量参数。[1] C++的cstdarg头文件中也提供这样的机能；虽然与C的头文件是兼容的，但是也有冲突存在。
+不定参数函数(Variadic functions)是stdarg.h内容典型的应用，虽然也可以使用在其他由不定参数函数调用的函数(
+*/
 # include <stdarg.h>
+/*
+sys/types.h，在应用程序源文件中包含 <sys/types.h> 以访问 _LP64 和 _ILP32 的定义。所有这些类型在 ILP32 编译环境中保持为 32 位值，并会在 LP64 编译环境中增长为 64 位值。
+*/
 # include <sys/types.h>
+/*
+process.h 是包含用于和宏指令的作用声明与螺纹和过程一起使用的C标头文件。 标头文件的作用是由二者之一定义的 ANSI/ISO C 标准或 POSIX、多数C编译器 DOS, 窗口3.1x, Win32, OS/2Novell NetWare或 DOS职能在他们的C程序库里。多线程相关的时候就需要include <process.h>提供了两个对多线程进行支持的函数，即线程的创建和终结没有对线程挂起和恢复进行操作的函数，通常，这两项功能使用win32 api完成。
+*/
 # include <process.h>
-
+/*
+#define 是 C 指令，用于为各种数据类型定义别名，与 typedef 类似，但是它们有以下几点不同：
+typedef 仅限于为类型定义符号名称，#define 不仅可以为类型定义别名，也能为数值定义别名，比如您可以定义 1 为 ONE。
+typedef 是由编译器执行解释的，#define 语句是由预编译器进行处理的。
+*/
 typedef int uid_t;
 typedef int gid_t;
 typedef char * caddr_t;
