@@ -79,7 +79,12 @@ SAPI_API void sapi_startup(sapi_module_struct *sf)
 {
 	sf->ini_entries = NULL;
 	sapi_module = *sf;
+/*
+2017-11-15注:
+指针是一个变量，其值为另一个变量的地址，即，内存位置的直接地址。就像其他变量或常量一样，您必须在使用指针存储其他变量地址之前，对其进行声明。
+函数指针是指向函数的指针变量。
 
+*/
 #ifdef ZTS
 	ts_allocate_id(&sapi_globals_id, sizeof(sapi_globals_struct), (ts_allocate_ctor) sapi_globals_ctor, (ts_allocate_dtor) sapi_globals_dtor);
 # ifdef PHP_WIN32
