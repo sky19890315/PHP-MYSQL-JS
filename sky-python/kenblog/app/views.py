@@ -1,10 +1,11 @@
-# from flask import render_tmplate
-from app import app
+from flask import render_template
+from app import app, login_manager
 
 
 @app.route('/')
+@app.route('/home')
 def index():
-    return 'Hello world'
+    return render_template('index.html')
 
 
 @app.route('/about')
@@ -17,11 +18,27 @@ def contact():
     return 'contact me!'
 
 
-@app.route('/home')
-def home():
-    return 'Home'
-
-
-@app.route('/login')
+@app.route('/login',  methods=['GET', 'POST'])
 def login():
     return 'Login!'
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
