@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5db0cce9-5c67-4d4f-afa5-a5884c130934" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/blade.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/php/ob.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/learn.iml" afterPath="$PROJECT_DIR$/.idea/learn.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/demo8-tpshop/www/.idea/workspace.xml" afterPath="$PROJECT_DIR$/demo/demo8-tpshop/www/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -224,12 +220,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1512051863058</updated>
-      <workItem from="1512833209071" duration="1183000" />
+      <workItem from="1512833209071" duration="1193000" />
     </task>
+    <task id="LOCAL-00001" summary="add demo">
+      <created>1512834434622</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1512834434622</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1183000" />
+    <option name="totallyTimeSpent" value="1193000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="68" y="23" width="1372" height="877" extended-state="6" />
@@ -261,6 +265,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add demo" />
+    <option name="LAST_COMMIT_MESSAGE" value="add demo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
