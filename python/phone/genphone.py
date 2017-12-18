@@ -52,7 +52,7 @@ wfile = xlwt.Workbook()
 
 wtable = wfile.add_sheet('Sheet1', cell_overwrite_ok=True)
 
-for i in range(10000):
+for i in range(60000):
     ln = random.randint(1,2)
     if ln == 1:
         name = random.choice(last_names) + random.choice(hanzis)
@@ -63,7 +63,7 @@ for i in range(10000):
     wtable.write(i,1,phone)
 
 
-wfile.save('phone2.xls')
+wfile.save('phone3.xls')
 
 
 
